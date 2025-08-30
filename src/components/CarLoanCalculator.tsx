@@ -14,7 +14,6 @@ const CarLoanCalculator: React.FC<Props> = ({ price, id }) => {
     setInitialPayment,
     term,
     setTerm,
-    loanAmount,
     monthlyPayment,
   } = useCarLoan(price, minPayment, maxPayment, id);
 
