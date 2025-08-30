@@ -20,7 +20,24 @@ const CarLoanCalculator: React.FC<Props> = ({ price, id }) => {
 
   return (
     <div className="mt-6 p-4 border rounded-xl shadow-sm bg-white">
-      <h2 className="text-lg font-semibold mb-3">Купить в кредит</h2>
+      <h2 className="text-lg font-semibold mb-2">Купить в кредит</h2>
+
+      <div className="mb-2 text-xl">
+        {initialPayment >= minPayment && initialPayment <= maxPayment ? (
+          <p>
+            <strong>Месячный платёж:</strong>{" "}
+            <span className="bg-yellow-300 text-black font-semibold p-1">
+              {Number(monthlyPayment.toFixed(0)).toLocaleString()} ₸
+            </span>
+          </p>
+        ) : (
+          <p className="text-red-500">
+            Введите первоначальный взнос в диапазоне{" "}
+            {minPayment.toLocaleString()} ₸ – {maxPayment.toLocaleString()} ₸
+          </p>
+        )}
+      </div>
+
       <label className="block text-sm font-medium mb-1">
         Стоимость авто (₸)
       </label>
@@ -59,25 +76,6 @@ const CarLoanCalculator: React.FC<Props> = ({ price, id }) => {
             {option}
           </button>
         ))}
-      </div>
-
-      <div className="bg-gray-100 rounded-lg p-3">
-        {initialPayment >= minPayment && initialPayment <= maxPayment ? (
-          <>
-            <p>
-              <strong>Сумма кредита:</strong> {loanAmount.toLocaleString()} ₸
-            </p>
-            <p>
-              <strong>Месячный платёж:</strong>{" "}
-              {Number(monthlyPayment.toFixed(0)).toLocaleString()} ₸
-            </p>
-          </>
-        ) : (
-          <p className="text-red-500">
-            Введите первоначальный взнос в диапазоне{" "}
-            {minPayment.toLocaleString()} ₸ – {maxPayment.toLocaleString()} ₸
-          </p>
-        )}
       </div>
     </div>
   );
